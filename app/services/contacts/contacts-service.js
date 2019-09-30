@@ -1,4 +1,4 @@
-contactsprocess.env.NODE_ENV = process.NODE_ENV || "development";
+process.env.NODE_ENV = process.NODE_ENV || "development";
 const rootPath = require("app-root-path");
 require("module-alias/register");
 const { logger } = require("@lib/logger.js");

@@ -1,0 +1,25 @@
+{
+  "name": "services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "services.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "contacts": "npm run contacts --prefix contacts",
+    "services": "concurrently \"npm:contacts\"",
+    "compile": "npm i contacts --prefix contacts",
+    "removeNodeModules": "rm -r contacts/node_modules",
+    "installModuleAlias": "npm i -C contacts -S module-alias",
+    "addNodeModulesFolder": "mkdir -p contacts/node_modules",
+    "prodCompile": "npm run addNodeModulesFolder && npm run compile && npm run removeNodeModules && npm run compile && npm run installModuleAlias"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "dependencies": {
+    "shortid": "^2.2.14",
+    "contactsservice": "file:contacts"
+  }
+}

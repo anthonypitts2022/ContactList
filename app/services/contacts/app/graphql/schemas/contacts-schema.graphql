@@ -1,0 +1,69 @@
+type Query {
+  getAllContacts: [Contact]
+}
+
+type Mutation {
+  createContact(input: createContactInput): Contact
+  deleteAllContacts(isActual: Boolean!): Boolean
+  deleteAContact(id: String!): Boolean
+  editContact(input: editContactInput): Contact
+}
+
+
+#===============================================================================
+# Contact
+#===============================================================================
+
+type Contact {
+  id: ID
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  email: String
+  fileId: String
+  fileType: String
+  errors: Error
+  success: Success
+  bulkAddReport: [BulkAddReport]
+}
+
+
+#===============================================================================
+# Inputs
+#===============================================================================
+
+input createContactInput{
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  email: String
+  fileId: String!
+  fileType: String!
+}
+
+input editContactInput{
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  email: String
+  fileId: String
+  fileType: String
+}
+
+
+#===============================================================================
+# Messages
+#===============================================================================
+
+type Error {
+  msg: String
+}
+
+type Success {
+  msg: String
+}
+
+type BulkAddReport {
+  msg: String
+  val: String
+}
