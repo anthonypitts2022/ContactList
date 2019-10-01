@@ -52,8 +52,7 @@ input editContactInput{
 }
 
 input deleteContactInput{
-  firstName: String
-  lastName: String
+  id: String
 }
 
 

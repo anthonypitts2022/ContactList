@@ -103,7 +103,7 @@ const deleteAllContactsMutation = async (parent, { isActual }, {user}) => {
 const deleteAContactMutation = async (parent, { input }, {user}) => {
   try{
     //await Contact.findById(id).remove().exec();
-    await Contact.deleteOne({firstName: input.firstName, lastName: input.lastName});
+    await Contact.findByIdAndRemove(input.id);
     return true;
   } catch (err) {
     // Database response after Contact failed to delete
@@ -121,7 +121,7 @@ const deleteAContactMutation = async (parent, { input }, {user}) => {
 const editContactMutation = async (parent, { input }, {user}) => {
 
   try {
-    var newContact = await Contact.updateOne( {id:input.id},
+    var newContact = await Contact.findByIdAndUpdate( input.id,
       {
         $set: {
           firstName: input.firstName,
