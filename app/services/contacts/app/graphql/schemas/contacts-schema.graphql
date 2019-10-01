@@ -5,7 +5,7 @@ type Query {
 type Mutation {
   createContact(input: createContactInput): Contact
   deleteAllContacts(isActual: Boolean!): Boolean
-  deleteAContact(id: String!): Boolean
+  deleteAContact(input: deleteContactInput): Boolean
   editContact(input: editContactInput): Contact
 }
 
@@ -42,12 +42,18 @@ input createContactInput{
 }
 
 input editContactInput{
+  id: String
   firstName: String
   lastName: String
   phoneNumber: String
   email: String
   fileId: String
   fileType: String
+}
+
+input deleteContactInput{
+  firstName: String
+  lastName: String
 }
 
 
