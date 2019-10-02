@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ContactsPage from './pages/ContactsPage';
+import AddContactPage from './pages/AddContactPage';
 import Page404 from './pages/Page404';
 import * as serviceWorker from './config/serviceWorker';
 import "bootstrap/dist/css/bootstrap.css";
@@ -12,6 +13,7 @@ const routing = (
     <div>
       <Switch>
         <Route exact path="/" component={ContactsPage} />
+        <Route exact path="/addcontact" component={AddContactPage} />
         <Route component={Page404} />
       </Switch>
     </div>

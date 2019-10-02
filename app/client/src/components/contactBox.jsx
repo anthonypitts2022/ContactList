@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Image } from 'react-native'
 import { Query, Mutation } from 'react-apollo';
 import axios from 'axios';
 
@@ -27,6 +28,7 @@ class ContactBox extends Component {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="card">
+
             <img className="card-img-top" src={"http://localhost:3301/file/" + this.state.fileId +"/"+this.state.fileType} ></img>
             <div className="card-body">
               <h5 className="card-title">{this.state.firstName +" "+ this.state.lastName}</h5>

@@ -10,7 +10,6 @@
 !Title : perms-queries
 !Auth  : Anthony Pitts
 !Vers  : 1.0
-!Date  : 7/13/19 *Last Mod
 !Desc  : Conatins all the queries for contacts service
 */
 

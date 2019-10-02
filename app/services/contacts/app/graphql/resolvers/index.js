@@ -10,7 +10,6 @@
 Title: Index resolver
 Auth: Anthony Pitts
 Vers: 1.1
-date: 7/13/19 *Last ModBODY
 desc: Main resolvers component
 */
 

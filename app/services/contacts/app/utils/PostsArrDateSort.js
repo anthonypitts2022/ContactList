@@ -2,7 +2,6 @@
 !Title : Sort an Arr of posts, returned in descending (newest first) order
 !Auth  : Anthony Pitts
 !Vers  : 1.0
-!Date  : 8/13/19 *Last Mod
 */
 
 var PostsDateSort = ( postsArr ) => {

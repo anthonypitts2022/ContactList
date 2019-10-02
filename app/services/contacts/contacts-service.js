@@ -63,28 +63,27 @@ app.route('/upload').post(function(req, res) {
     fetch({
       query:
       `
-        mutation createContact($input: createContactInput){
-          Contact: createContact(input: $input){
-            errors{
-              msg
-            }
-            fileId
-            fileType
-            userId
-            id
-            caption
-            likeCount
-            dislikeCount
-            comments{
-              text
-              userId
-            }
+      mutation createContact($input: createContactInput){
+        Contact: createContact(input: $input){
+          id
+          firstName
+          lastName
+          email
+          phoneNumber
+          fileId
+          fileType
+          errors{
+            msg
           }
         }
+      }
       `,
       variables: {
         input: {
-           caption : req.body.caption,
+           firstName : req.body.firstName,
+           lastName : req.body.lastName,
+           phoneNumber : req.body.phoneNumber,
+           email : req.body.email,
            fileId : fileId,
            fileType : path.extname(req.file.originalname)
          }
@@ -99,45 +98,7 @@ app.route('/upload').post(function(req, res) {
 
 //=========================================================================//
 
-//============  create like mutation call   ====================//
 
-app.route('/createlike').post(function(req, res) {
-
-  //calls create like database mutation
-  var fetch = createApolloFetch({
-    uri: "http://localhost:3301/contacts"
-  });
-  //binds the res of upload to fetch to return the fetch data
-  fetch = fetch.bind(res)
-  fetch({
-    query:
-    `
-      mutation createLike($input: createLikeInput){
-        Like: createLike(input: $input){
-          errors{
-            msg
-          }
-          id
-          userId
-          contactId
-          isLike
-        }
-      }
-    `,
-    variables: {
-      input: {
-        isLike: req.body.input.isLike,
-        contactId: req.body.input.contactId
-      }
-    }
-  })
-  .then(result => {
-    //result.data holds the data returned from the createLike mutation
-    return res.status(200).send(result.data.Like);
-  })
-});
-
-//=========================================================================//
 
 //============  get contact mutation call   ====================//
 

@@ -10,7 +10,6 @@
 !Title : perms-Mutation
 !Auth  : Anthony Pitts
 !Vers  : 1.0
-!Date  : 7/13/19 *Last Mod
 !Desc  : Contains All mutations for Contacts service
 */
 
