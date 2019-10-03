@@ -99,6 +99,37 @@ app.route('/upload').post(function(req, res) {
 //=========================================================================//
 
 
+//============  delete contact   ====================//
+
+app.route('/delete').post(function(req, res) {
+
+    //calls create contact database mutation
+    var fetch = createApolloFetch({
+      uri: "http://localhost:3301/contacts"
+    });
+    //binds the res of upload to fetch to return the fetch data
+    fetch = fetch.bind(res)
+    fetch({
+      query:
+      `
+      mutation deleteAContact($input: deleteContactInput){
+        deleteAContact(input: $input)
+      }
+      `,
+      variables: {
+        input: {
+           id : req.body.id
+         }
+      }
+  })
+  .then(result => {
+    return res.status(200).send(result.data);
+  })
+});
+
+//=========================================================================//
+
+
 
 //============  get contact mutation call   ====================//
 

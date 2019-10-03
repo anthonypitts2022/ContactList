@@ -19,7 +19,9 @@
     "concurrently": "^4.1.0"
   },
   "dependencies": {
-    "shortid": "^2.2.14",
-    "contactsservice": "file:contacts"
+    "contactsservice": "file:contacts",
+    "react": "^16.10.1",
+    "react-native": "^0.61.2",
+    "shortid": "^2.2.14"
   }
 }
