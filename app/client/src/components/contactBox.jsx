@@ -4,6 +4,8 @@ import { Image } from 'react-native';
 import axios from 'axios';
 
 
+//import EditContactPage from '../components/editContactPage.jsx';
+
 
 
 class ContactBox extends Component {
@@ -25,6 +27,7 @@ class ContactBox extends Component {
 
     //bindings
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
 
   }
 
@@ -43,7 +46,7 @@ class ContactBox extends Component {
         var result = response.data.deleteAContact;
 
         //if no errors when creating post
-        if(result==true){
+        if(result===true){
           window.location.href = "/";
         }
       }
@@ -51,6 +54,13 @@ class ContactBox extends Component {
         console.log(err);
       }
     }
+  }
+
+  handleEdit(event){
+    window.location.href = "/editcontact/"+this.state.id;
+    /*return(
+      <EditContactPage contactInfo={this.state}/>
+    );*/
   }
 
   render(){
@@ -70,7 +80,7 @@ class ContactBox extends Component {
                     <h4 className="card-title">{this.state.firstName +" "+ this.state.lastName}</h4>
                     <p className="card-text">{this.state.phoneNumber}</p>
                     <p className="card-text">{this.state.email}</p>
-                    <a href="#" className="btn btn-primary">Edit</a>
+                    <a onClick={this.handleEdit} className="btn btn-primary">Edit</a>
                     <a> </a>
                     <a onClick={this.handleDelete} className="btn btn-primary px-3">Delete</a>
                   </div>
@@ -79,6 +89,9 @@ class ContactBox extends Component {
               </div>
             </div>
           </div>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
+          <script src="/docs/4.0/assets/js/vendor/jquery-slim.min.js"></script>
+          <script src="/docs/4.0/assets/js/vendor/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script><script src="/docs/4.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="/docs/4.0/assets/js/docs.min.js"></script>
         </div>
     );
   }

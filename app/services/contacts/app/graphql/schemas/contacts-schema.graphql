@@ -1,5 +1,6 @@
 type Query {
   getAllContacts: [Contact]
+  contact(id: String): Contact
 }
 
 type Mutation {

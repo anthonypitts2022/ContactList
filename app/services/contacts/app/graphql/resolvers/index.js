@@ -21,6 +21,7 @@ const { handleErrors } = require("../../utils/handle-errors.js");
 // contacts Queries Library
 const {
   getAllContactsQuery,
+  contactQuery
 } = require("./contacts-queries.js");
 
 
@@ -42,7 +43,8 @@ const {
 //---------------------------------
 
 const Query = {
-  getAllContacts: getAllContactsQuery
+  getAllContacts: getAllContactsQuery,
+  contact: contactQuery
 };
 
 //---------------------------------
@@ -61,5 +63,4 @@ const Mutation = {
 // !EXPORTS
 //==============================================================================
 
-//module.exports = { Query, Mutation };
 module.exports = { Query, Mutation };

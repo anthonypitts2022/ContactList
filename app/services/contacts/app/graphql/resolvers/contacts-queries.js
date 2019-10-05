@@ -51,7 +51,28 @@ const getAllContactsQuery = async (root, { args }) => {
   }
 };
 
+const contactQuery = async (root, { id } ) => {
+  try{
+    console.log(1);
+    console.log(id);
+    var contact = await Contact.findById(id);
+
+     //check if post does not exist
+     if(!contact){
+       return handleErrors("001", {postId: "contact does not exist."});
+     }
+
+     else{
+       return contact
+     }
+
+  } catch (e) {
+    logger.error(e.message);
+  }
+};
+
 
 module.exports = {
   getAllContactsQuery,
+  contactQuery
 };
