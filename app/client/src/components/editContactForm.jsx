@@ -75,10 +75,13 @@ class CreateContactForm extends Component {
     fileData.append('lastName', this.state.lastName);
     fileData.append('phoneNumber', this.state.phoneNumber);
     fileData.append('email', this.state.email);
+    fileData.append('id', this.state.id);
+    fileData.append('fileId', this.state.fileId);
+    fileData.append('fileType', this.state.fileType);
     createContact(fileData);
     async function createContact( fileData ) {
       try{
-        var response = await axios.post("http://localhost:3301/upload", fileData);
+        var response = await axios.post("http://localhost:3301/uploadedit", fileData);
 
         //newContact holds the data of the newly created contact
         var newContact = response.data;

@@ -120,6 +120,10 @@ const deleteAContactMutation = async (parent, { input }, {user}) => {
 const editContactMutation = async (parent, { input }, {user}) => {
 
   try {
+
+    var oldContact = await Contact.findById(input.id);
+
+    //console.log(input);
     var newContact = await Contact.findByIdAndUpdate( input.id,
       {
         $set: {
@@ -132,7 +136,7 @@ const editContactMutation = async (parent, { input }, {user}) => {
         }
       }
     );
-    console.log(newContact);
+
     return newContact;
 
   } catch (err) {

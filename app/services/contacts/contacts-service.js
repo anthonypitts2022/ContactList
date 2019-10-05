@@ -96,6 +96,85 @@ app.route('/upload').post(function(req, res) {
   })
 });
 
+
+//============  Uploading images with contacts   ====================//
+
+app.route('/uploadedit').post(function(req, res) {
+
+  //generates the image file id
+  const fileId = shortid.generate();
+
+  var storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, "uploads")
+      },
+      filename: function (req, file, cb) {
+        //console.log(file);
+        //if no file was provided
+        //if(file==undefined){
+        //  cb(null, null);
+        //}
+        //else{
+          cb(null, fileId + path.extname(file.originalname) );
+        //}
+      }
+  });
+
+  var upload = multer({ storage: storage }).single('file');
+
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+       res.status(500).send({errors: err});
+    } else if (err) {
+       console.log(err)
+       res.status(500).send({errors: err});
+    }
+
+    //if no errors on uploading file, proceed to create contact
+
+    //calls create contact database mutation
+    var fetch = createApolloFetch({
+      uri: "http://localhost:3301/contacts"
+    });
+    //binds the res of upload to fetch to return the fetch data
+    fetch = fetch.bind(res)
+    fetch({
+      query:
+      `
+      mutation editContact($input: editContactInput){
+        Contact: editContact(input: $input){
+          id
+          firstName
+          lastName
+          email
+          phoneNumber
+          fileId
+          fileType
+          errors{
+            msg
+          }
+        }
+      }
+      `,
+      variables: {
+        input: {
+           firstName : req.body.firstName,
+           lastName : req.body.lastName,
+           phoneNumber : req.body.phoneNumber,
+           email : req.body.email,
+           id : req.body.id,
+           fileId : (req.file==undefined ? req.body.fileId : fileId),
+           fileType : (req.file==undefined ? req.body.fileType : path.extname(req.file.originalname))
+         }
+      }
+  })
+  .then(result => {
+    //result.data holds the data returned from the createContact mutation
+    return res.status(200).send(result.data.Contact);
+  })
+  })
+});
+
 //=========================================================================//
 
 

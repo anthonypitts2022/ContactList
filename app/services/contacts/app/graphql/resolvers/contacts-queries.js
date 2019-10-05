@@ -53,8 +53,6 @@ const getAllContactsQuery = async (root, { args }) => {
 
 const contactQuery = async (root, { id } ) => {
   try{
-    console.log(1);
-    console.log(id);
     var contact = await Contact.findById(id);
 
      //check if post does not exist
